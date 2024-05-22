@@ -110,12 +110,12 @@ func (db *DB[K, V]) pickForCompaction() []*segment {
 	for i := len(segments) - 1; i >= 0; i-- {
 		seg := segments[i]
 
-		if uint32(seg.size) < db.opts.compactionMinSegmentSize {
+		if uint32(seg.size) < db.opts.CompactionMinSegmentSize {
 			continue
 		}
 
 		fragmentation := float32(seg.meta.DeletedBytes) / float32(seg.size)
-		if fragmentation < db.opts.compactionMinFragmentation {
+		if fragmentation < db.opts.CompactionMinFragmentation {
 			continue
 		}
 

@@ -198,7 +198,7 @@ func (dl *datalog[K, V]) del(key K) error {
 }
 
 func (dl *datalog[K, V]) writeRecord(data []byte, rt recordType) (uint16, uint32, error) {
-	if dl.curSeg.meta.Full || dl.curSeg.size+int64(len(data)) > int64(dl.opts.maxSegmentSize) {
+	if dl.curSeg.meta.Full || dl.curSeg.size+int64(len(data)) > int64(dl.opts.MaxSegmentSize) {
 		// Current segment is full, create a new one.
 		dl.curSeg.meta.Full = true
 		if err := dl.swapSegment(); err != nil {
